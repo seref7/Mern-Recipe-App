@@ -23,9 +23,17 @@ Before you begin, ensure you have met the following requirements:
 
 
 
-### what to install
+### Installation
 
 To run this project locally, you'll need to install the required dependencies for both the client and server sides. Run the following commands in the project root directory:
+
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/Mern-Recipe-App.git
+
+# Navigate to the project directory
+cd Mern-Recipe-App
 
 ```bash
 # Install client-side dependencies
@@ -37,21 +45,6 @@ cd ../server
 npm install express mongoose bcrypt jsonwebtoken cors dotenv
 
 
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/Mern-Recipe-App.git
-
-# Navigate to the project directory
-cd Mern-Recipe-App
-
-# Install server and client dependencies
-cd server
-npm install
-cd ../client
-npm install
 
 # Create a .env file in the server directory and set your environment variables, including your MongoDB connection string.
 # Example .env file:
