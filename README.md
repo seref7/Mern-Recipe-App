@@ -48,8 +48,8 @@ npm start
 cd ../client
 npm start
 
-## Usage
 
+Usage
 Visit http://localhost:3000 in your web browser to access the app.
 
 
