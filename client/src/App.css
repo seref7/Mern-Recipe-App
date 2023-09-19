@@ -1,3 +1,4 @@
+/* App */
 .App {
   display: flex;
   flex-direction: column;
@@ -12,6 +13,7 @@ body {
   padding: 0;
 }
 
+/* Authentication Pages */
 .auth {
   display: flex;
   justify-content: center;
@@ -50,11 +52,12 @@ input {
   border-radius: 5px;
 }
 
+/* Navbar */
 .navbar {
   margin: 0;
   width: 100%;
   height: 80px;
-  background-color: black;
+  background-color: #333; /* Dark Grey */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,6 +72,7 @@ a {
   font-size: 25px;
 }
 
+/* Create Recipe Page */
 .create-recipe {
   display: flex;
   flex-direction: column;
@@ -79,12 +83,15 @@ a {
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   margin: 20px;
-  width: 400px;
+  width: 500px;
 }
+
 .create-recipe form {
   display: flex;
   flex-direction: column;
 }
+
+/* Recipe List */
 ul {
   list-style: none;
   padding: 0;
@@ -92,7 +99,7 @@ ul {
 }
 
 li {
-  border: 1px solid black;
+  border: 1px solid #ddd; /* Light Grey */
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -107,11 +114,21 @@ img {
   margin-bottom: 10px;
 }
 
+
 img {
-  width: 400px;
+  width: 520px;
+}
+
+button {
+  background-color: #fdfcfc; 
+  padding: 8px 12px; /* Adjusted Padding for Buttons */
+  font-size: 12px;
+  border-radius: 5px;
+  color: black; /* Ensuring Button Text is Black */
 }
 
 p {
   max-width: 400px;
   font-size: 12px;
 }
+

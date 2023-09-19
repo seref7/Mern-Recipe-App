@@ -3,14 +3,18 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
-    const [cookies, setCookies] = useCookies(["access_token"]);
-    const navigate = useNavigate();
+  // Retrieve cookies and set the navigate function
+  const [cookies, setCookies] = useCookies(["access_token"]);
+  const navigate = useNavigate();
 
-    const logout = () => {
-        setCookies("access_token", "");
-        window.localStorage.clear();
-        navigate("/auth");
-      };
+  // Function to handle logout
+  const logout = () => {
+      // Clear the access token cookie and local storage
+      setCookies("access_token", "");
+      window.localStorage.clear();
+      // Navigate to the authentication page
+      navigate("/auth");
+  };
 
     return (
         <div className="navbar">

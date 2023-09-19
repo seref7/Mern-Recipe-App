@@ -4,53 +4,64 @@ import { useGetUserID } from "../hooks/useGetUserID";
 import { useCookies } from "react-cookie";
 
 export const Home = () => {
+    // State for storing recipes and saved recipes
     const [recipes, setRecipes] = useState([]);
     const [savedRecipes, setSavedRecipes] = useState([]);
+    
+    // Get user's access_token cookie
     // eslint-disable-next-line
     const [cookies, _] = useCookies(["access_token"]);
 
+    // Get the user's ID using a custom hook
     const userID = useGetUserID();
+
     useEffect(() => {
+        // Function to fetch recipes from the server
         const fetchRecipe = async () => {
-          try {
-            const response = await axios.get("http://localhost:3001/recipes");
-            setRecipes(response.data);
-          } catch (err) {
-            console.error(err);
-          }
+            try {
+                const response = await axios.get("http://localhost:3001/recipes");
+                setRecipes(response.data);
+            } catch (err) {
+                console.error(err);
+            }
         };
 
+        // Function to fetch saved recipes for the user
         const fetchSavedRecipe = async () => {
             try {
-              const response = await axios.get(
-                `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
-              );
-              setSavedRecipes(response.data.savedRecipes);
+                const response = await axios.get(
+                    `http://localhost:3001/recipes/savedRecipes/ids/${userID}`
+                );
+                setSavedRecipes(response.data.savedRecipes);
             } catch (err) {
-              console.error(err);
+                console.error(err);
             }
-          };
+        };
 
+        // Fetch recipes when the component mounts
         fetchRecipe();
 
+        // Fetch saved recipes if the user is authenticated (has access_token cookie)
         if (cookies.access_token) fetchSavedRecipe();
-    }, [userID]);
+    }, [userID, cookies.access_token]);
 
+    // Function to save a recipe for the user
     const saveRecipe = async (recipeID) => {
         try {
-          const response = await axios.put("http://localhost:3001/recipes", {
-            recipeID,
-            userID,
-          }, 
-          { headers: {authorization: cookies.access_token }}
-          );
-          setSavedRecipes(response.data.savedRecipes);
+            const response = await axios.put("http://localhost:3001/recipes", {
+                recipeID,
+                userID,
+            }, 
+            { headers: { authorization: cookies.access_token }}
+            );
+            setSavedRecipes(response.data.savedRecipes);
         } catch (err) {
-          console.error(err);
+            console.error(err);
         }
-      };
+    };
 
-      const isRecipeSaved = (id) => savedRecipes.includes(id);
+    // Function to check if a recipe is saved by the user
+    const isRecipeSaved = (id) => savedRecipes.includes(id);
 
     return (
         <div>
@@ -76,7 +87,5 @@ export const Home = () => {
             ))}
           </ul>
         </div>
-      );
-    }; 
-
-   
+    );
+};

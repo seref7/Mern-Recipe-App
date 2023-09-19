@@ -6,6 +6,7 @@ import { verifyToken } from "./users.js";
 
 const router = express.Router();
 
+// Get all recipes
 router.get("/", async (req, res) => {
     try {
       const response = await RecipeModel.find({});
@@ -15,7 +16,8 @@ router.get("/", async (req, res) => {
     }
   });
 
-  router.post("/", verifyToken, async (req, res) => {
+// Create a new recipe (requires authentication)
+router.post("/", verifyToken, async (req, res) => {
     const recipe = new RecipeModel(req.body);
     try {
       const response = await recipe.save();
@@ -25,20 +27,21 @@ router.get("/", async (req, res) => {
     }
   });
 
-  router.put("/", verifyToken, async (req, res) => {
-   
+// Save a recipe to a user's savedRecipes (requires authentication)
+router.put("/", verifyToken, async (req, res) => {
     try {
       const recipe = await RecipeModel.findById(req.body.recipeID);
       const user = await UserModel.findById(req.body.userID);
       user.savedRecipes.push(recipe);
       await user.save();
-      res.json({ savedRecipes: user.savedRecipes});
+      res.json({ savedRecipes: user.savedRecipes });
     } catch (err) {
       res.json(err);
     }
   });
 
-  router.get("/savedRecipes/ids/:userID", async (req, res) => {
+// Get saved recipe IDs for a user
+router.get("/savedRecipes/ids/:userID", async (req, res) => {
     try {
       const user = await UserModel.findById(req.params.userID);
       res.json({ savedRecipes: user?.savedRecipes });
@@ -47,7 +50,8 @@ router.get("/", async (req, res) => {
     }
   });
 
-  router.get("/savedRecipes/:userID", async (req, res) => {
+// Get saved recipes for a user
+router.get("/savedRecipes/:userID", async (req, res) => {
     try {
       const user = await UserModel.findById(req.params.userID);
       const savedRecipes = await RecipeModel.find({
@@ -60,4 +64,3 @@ router.get("/", async (req, res) => {
   });
 
 export { router as recipesRouter };
-
