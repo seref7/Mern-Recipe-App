@@ -48,6 +48,12 @@ npm start
 cd ../client
 npm start
 
+Usage
+Visit http://localhost:3000 in your web browser to access the app.
+
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
 
    
 
