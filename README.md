@@ -13,12 +13,30 @@ This is a simple MERN (MongoDB, Express, React, Node.js) recipe app. It allows u
 
 These instructions will help you set up the project on your local machine for development and testing purposes.
 
+
 ### Prerequisites
 
 Before you begin, ensure you have met the following requirements:
 
 - [Node.js](https://nodejs.org/) installed on your machine.
 - [MongoDB](https://www.mongodb.com/) set up and running.
+
+
+
+### what to install
+
+To run this project locally, you'll need to install the required dependencies for both the client and server sides. Run the following commands in the project root directory:
+
+```bash
+# Install client-side dependencies
+cd client
+npm install react axios react-router-dom react-cookie
+
+# Install server-side dependencies
+cd ../server
+npm install express mongoose bcrypt jsonwebtoken cors dotenv
+
+
 
 ### Installation
 
@@ -47,6 +65,7 @@ npm start
 # Start the client
 cd ../client
 npm start
+
 
 
 
